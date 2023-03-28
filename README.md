@@ -12,5 +12,5 @@ JWTs or JSON Web Tokens are most commonly used to identify an authenticated user
 * [Common issues during development]
 * [Further reading material]
 
-## JWT
+## What is JWT
 What is a JWT?
