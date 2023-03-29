@@ -1,0 +1,9 @@
+after create token when user register 
+if we put [authorize] in any contoller or Action in controller 
+noone can't access this contorller or Action untill client send the token to server 
+to check it first 
+
+----
+note after user register the token is saved in client not in the server or DataBase 
+and every time the user login just send the token to server and server take token and create new token again 
+for this user and if the token that user send is match with the new one then user is safe .  

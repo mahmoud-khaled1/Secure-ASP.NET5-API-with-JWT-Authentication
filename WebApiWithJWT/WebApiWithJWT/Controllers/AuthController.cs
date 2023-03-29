@@ -26,7 +26,7 @@ namespace WebApiWithJWT.Controllers
             if (!result.IsAuthenticated)
                 return BadRequest(result.Message);
 
-            return Ok(result);
+            return Ok(new {token=result.Token,expiresOn=result.ExpiresOn});
         }
 
         [HttpPost("token")]
