@@ -4,6 +4,23 @@ noone can't access this contorller or Action untill client send the token to ser
 to check it first 
 
 ----
-note after user register the token is saved in client not in the server or DataBase 
+note :
+after user register the token is saved in client in cookies  not in the server or DataBase 
 and every time the user login just send the token to server and server take token and create new token again 
 for this user and if the token that user send is match with the new one then user is safe .  
+localStorage and sessionStorage are not good to store JWT token 
+localStorage : Can stealing a token using an XSS attack.
+sessionStorage:provides a quick, easy way to store some data, but it is not persistent as localStorage. If the user open a new tab or just close and reopen the browser, there will be no data we saved. It may be good for let say banking web applications, but for most others, it will be a very bad user experience.
+
+Conclusion
+Use cookies to store JWT tokens – always secure, always httpOnly, and with the proper same site flag. This configuration will secure your client’s data, it will prevent XSS and CSRF attack and also should simplify web application, because you do not have to care about using tokens manually on frontend code anymore. 
+
+Set-Cookie: jwt=OUR_TOKEN_CONTENT; secure; httpOnly; sameSite=Lax;
+----
+note :
+token should refresh always every 2 hours for example 
+not days for more security 
+
+What about refresh tokens?
+Exactly the same thing – they are also super important because they allow users to generate new JWT. If you use this token to determine: is a user logged in or not, you can stop doing that. Just save such information in localStorage (simple bool) if you need. It is not a problem: if the token expires, your API will inform the frontend about unauthorized requests, and then you can call the proper service to refresh the token. If the refresh token is expired or invalid, this service will inform you about that, so you will know that the user should be redirected to the login page. Yep, all these things without using tokens manually, it will be completely transparent from web application level.
+----
