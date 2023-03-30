@@ -17,8 +17,7 @@ namespace WebApiWithJWT.Controllers
         }
 
         [HttpGet("getdata")]
-        [Authorize]
-
+    
         public IActionResult GetData()
         {
             return Ok("Hello from secured controller");

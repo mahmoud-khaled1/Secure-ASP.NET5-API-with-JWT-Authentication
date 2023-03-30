@@ -6,9 +6,10 @@ namespace WebApiWithJWT.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+
     public class SecuredController : ControllerBase
     {
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet("getdata")]
         public IActionResult GetData()
         {
